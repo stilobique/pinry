@@ -54,7 +54,8 @@ ram.runtime = "50M"                                 # TODO > Not set
     example = "aurelienvlt@free.fr"
     
     [install.debug_enabled] # __DEBUG_ENABLED__
-    ask.en = "Should be never enabled in production!"
+    # Should be never enabled in production!"
+    ask.en = "Activate the debug django config"
     type = "select"
     choices = ["YES", "NO"]
     default = "NO"
@@ -71,30 +72,21 @@ ram.runtime = "50M"                                 # TODO > Not set
         [resources.sources.main]
         url = "https://github.com/pinry/pinry/archive/refs/tags/v2.1.12.tar.gz"
         sha256 = "b80590eacaa6c4d872d09af97e3904bf074d1ad25ee8ec3f69dd0d2c827ee63e"
-
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
-    # This will provision/deprovision a unix system user
 
     [resources.install_dir]
-    # This will create/remove the install dir as /var/www/$app
-    # and store the corresponding setting $install_dir
 
     [resources.data_dir]
-    # This will create/remove the data dir as /home/yunohost.app/$app
-    # and store the corresponding setting $data_dir
 
     [resources.permissions]
-    # This will configure SSOwat permission for $domain/$path/
-    # The initial allowed group of user is configured via the init_main_permission question (public=visitors, private=all_users)
     main.url = "/"
 
     [resources.ports]
-    # This will pick a random port for reverse-proxying and store it as the $port setting
 
     [resources.apt]
     packages = "build-essential, python3-dev, python3-pip, python3-venv, git, libpq-dev, postgresql, postgresql-contrib"
-            
-    # [resources.database]
+        
+    [resources.database]
     type = "postgresql"
