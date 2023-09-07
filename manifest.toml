@@ -48,7 +48,7 @@ ram.runtime = "50M"                                 # TODO > Not set
     [resources.sources]
         [resources.sources.main]
         url = "https://github.com/pinry/pinry/archive/refs/tags/v2.1.12.tar.gz"
-        sha256 = "B80590EACAA6C4D872D09AF97E3904BF074D1AD25EE8EC3F69DD0D2C827EE63E"
+        sha256 = "b80590eacaa6c4d872d09af97e3904bf074d1ad25ee8ec3f69dd0d2c827ee63e"
 
         autoupdate.strategy = "latest_github_tag"
 
