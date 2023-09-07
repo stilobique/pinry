@@ -7,7 +7,7 @@ description.fr = "Pinry est une application de partage de photo à la manière d
 
 version = "1.0~ynh1"
 
-maintainers = ["johndoe"]
+maintainers = ["stilobique"]
 
 [upstream]
 license = " BSD 2"
@@ -38,10 +38,32 @@ ram.runtime = "50M"                                 # TODO > Not set
     [install.path]
     type = "path"
     default = "/pinry"
+    
+    [install.admin]
+    type = "user"
+    default = "admin"
 
     [install.init_main_permission]
     type = "group"
     default = "visitors"
+    
+                                                    # TODO > Can't be provised by admin mail ??
+    [install.default_from_email] # __DEFAULT_FROM_EMAIL__
+    ask.en = "Default email address to use for various automated emails."
+    type = "email"
+    example = "aurelienvlt@free.fr"
+    
+    [install.debug_enabled] # __DEBUG_ENABLED__
+    ask.en = "Should be never enabled in production!"
+    type = "select"
+    choices = ["YES", "NO"]
+    default = "NO"
+
+    [install.log_level] # __LOG_LEVEL__
+    ask.en = "Logging level"
+    type = "select"
+    choices = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+    default = "WARNING"
 
 
 [resources]
@@ -72,7 +94,7 @@ ram.runtime = "50M"                                 # TODO > Not set
     # This will pick a random port for reverse-proxying and store it as the $port setting
 
     [resources.apt]
+    packages = "build-essential, python3-dev, python3-pip, python3-venv, git, libpq-dev, postgresql, postgresql-contrib"
             
     # [resources.database]
-    # This will automatically provision/deprovison a MySQL DB and store the corresponding credentials in settings $db_user, $db_name, $db_pwd
-    # type = "mysql"
+    type = "postgresql"
