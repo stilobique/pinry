@@ -31,6 +31,9 @@ ynh_app_setting_set --app=$app --key=log_level --value="$log_level"
 #=================================================
 ynh_script_progression --message="Validating installation parameters..."
 
+ynh_print_info --message="Uncrompressed the pinry app from github"
+ynh_setup_source --dest_dir="$install_dir/pinry" --source_id="main"
+
 mkdir -p "$install_dir/media" "$install_dir/static"
 
 #=================================================
