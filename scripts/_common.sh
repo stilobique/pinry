@@ -38,27 +38,6 @@ log_file="${log_path}/${app}.log"
 # HELPERS
 #=================================================
 
-myynh_setup_python_venv() {
-    # Always recreate everything fresh with current python version
-    ynh_secure_remove "$data_dir/venv"
-
-    # Skip pip because of: https://github.com/YunoHost/issues/issues/1960
-    python3 -m venv --without-pip "$data_dir/venv"
-
-    chown -c -R "$app:" "$data_dir"
-
-    # run source in a 'sub shell'
-    (
-        set +o nounset
-        source "$data_dir/venv/bin/activate"
-        set -o nounset
-        set -x
-        ynh_exec_as $app $data_dir/venv/bin/python3 -m ensurepip
-        ynh_exec_as $app $data_dir/venv/bin/pip3 install --upgrade wheel pip setuptools
-        ynh_exec_as $app $data_dir/venv/bin/pip3 install --no-deps -r "$data_dir/requirements.txt"
-    )
-}
-
 myynh_setup_log_file() {
     (
         set -x
