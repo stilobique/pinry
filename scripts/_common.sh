@@ -65,6 +65,24 @@ myynh_fix_file_permissions() {
 }
 
 #=================================================
+# Python pip install/upgrade
+#=================================================
+ynh_pip_app() {
+	cp ../conf/requirements.txt "$install_dir/requirements.txt"
+	
+	pushd $install_dir
+		ynh_secure_remove --file="$install_dir/virtualenv"
+		ynh_secure_remove --file="$install_dir/venv"
+		
+		python3 -m venv $install_dir/venv
+		source $install_dir/venv/bin/activate
+		ynh_exec_warn_less pip install --upgrade pip wheel toml
+		ynh_exec_warn_less pip install --requirement "$install_dir/requirements.txt"
+		ynh_exec_warn_less pip install --editable ./api
+	popd
+}
+
+#=================================================
 # Redis HELPERS
 #=================================================
 

@@ -31,16 +31,8 @@ mkdir -p "$install_dir/media" "$install_dir/static"
 # PYTHON VIRTUALENV
 #=================================================
 ynh_script_progression --message="Create and setup Python virtualenv..." --weight=45
-cp ../conf/requirements.txt "$install_dir/requirements.txt"
 
-pushd $install_dir
-	ynh_print_info --message="Make python into the dir $install_dir"
-	python3 -m venv $install_dir/venv
-	source $install_dir/venv/bin/activate
-	ynh_exec_warn_less pip install --upgrade pip wheel toml
-	ynh_exec_warn_less pip install --requirement "$install_dir/requirements.txt"
-	ynh_exec_warn_less pip install --editable ./api
-popd
+ynh_pip_app()
 
 #=================================================
 # NGINX CONFIGURATION
