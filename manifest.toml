@@ -76,7 +76,7 @@ ram.runtime = "50M"                                 # TODO > Not set
 
     [resources.system_user]
 
-    [resources.install_dir]ls
+    [resources.install_dir]
 
     [resources.data_dir]
 
